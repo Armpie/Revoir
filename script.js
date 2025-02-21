@@ -4,12 +4,11 @@ const attributes = {
     supernatural: { name: "Supernatural", value: 1, max: 5 }
 };
 
-function generateAttributes(){
-    for (let attribute in attributes){
-        attributes[attribute].value = 1; //sets all to one.
+function generateAttributes() {
+    for (let attribute in attributes) {
+        attributes[attribute].value = getRandomInt(1, attributes[attribute].max); // Randomize
     }
-    //add logic here to handle specialization.
-    //add logic here to handle manual attribute increases.
+    //Add specialization logic here.
     displayAttributes();
 }
 
@@ -17,6 +16,12 @@ function displayAttributes(){
     for (let attribute in attributes){
         document.getElementById(attribute + "Value").textContent = attributes[attribute].value;
     }
+}
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 document.getElementById("generateButton").addEventListener("click", function(){
